@@ -2,7 +2,7 @@
 
 static NSString *kMacroTitle = @"_TITLE_";
 static NSString *kMacroSource = @"_SOURCE_";
-static NSString *kMacroURL = @"_URL";
+static NSString *kMacroURL = @"_URL_";
 
 
 #pragma mark -
@@ -22,16 +22,6 @@ static NSString *format;
 	gTitle = [object title];
 	gSrcTitle = [object srcTitle];
 	gUrl = (NSString *)[object url];
-}
-
-- (void)__didClose
-{
-	%orig;
-}
-
-- (void)tapClose:(id)arg1
-{
-	%orig;
 }
 %end
 
@@ -296,6 +286,10 @@ static NSString *formatLine;
 
 
 
+
+#pragma mark HatenaBookmark action
+
+
 static NSString *filedText;
 
 static inline void Response(NSString *response)
@@ -322,15 +316,9 @@ static inline void Response(NSString *response)
 @end
 
 
-typedef enum {
-	NotReachable = 0,
-	ReachableViaWiFi,
-	ReachableViaWWAN
-} NetworkStatus;
-
-
 %hook UITextField
-- (id)_text {
+- (id)_text
+{
 	filedText = %orig;
 	return filedText;
 }
@@ -338,7 +326,6 @@ typedef enum {
 
 
 
-#pragma mark HatenaBookmark action
 
 %subclass RKServiceHatena : RKServiceLocalConnector
 
@@ -473,6 +460,7 @@ static NSString *hatenaComment;
 	gUrl = (__bridge_transfer NSString *)CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)gUrl, NULL,  (CFStringRef)@"&=-#", kCFStringEncodingUTF8);
 	[hatenaClient post:gUrl comment:comment];
 }
+%end
 
 
 
@@ -613,23 +601,23 @@ static void LoadSettings()
 	id existLine = [dict objectForKey:@"IsLine"];
 	isLine = existLine ? [existLine boolValue] : YES;
 	id existCustom = [dict objectForKey:@"IsCustom"];
-	isCustom = existCustom ? [existCustom boolValue] : YES;
+	isCustom = existCustom ? [existCustom boolValue] : NO;
 
 	id existFormat = [dict objectForKey:@"Format"];
-	format = existFormat ? [existFormat copy] : @"\"gTitle_ | _SOURCE_\"";
+	format = existFormat ? [existFormat copy] : @"\"_TITLE_ | _SOURCE_\"";
 
 	id existFormatLine = [dict objectForKey:@"FormatLine"];
-	formatLine = existFormatLine ? [existFormatLine copy] : @"\"gTitle_ | _SOURCE_\" gUrl_";
+	formatLine = existFormatLine ? [existFormatLine copy] : @"\"_TITLE_ | _SOURCE_\" _URL_";
 
 	id existFormatCustom = [dict objectForKey:@"FormatCustom"];
-	formatCustom = existFormatCustom ? [existFormatCustom copy] : @"tweetbot:///post?text=\"gTitle_ | _SOURCE_\" gUrl_";
+	formatCustom = existFormatCustom ? [existFormatCustom copy] : @"tweetbot:///post?text=\"_TITLE_ | _SOURCE_\" _URL_";
 	id existTitleCustom = [dict objectForKey:@"TitleCustom"];
 	titleCustom = existTitleCustom ? [existTitleCustom copy] : @"*CUSTOM ACTION*";
 
 	id existFormatBody = [dict objectForKey:@"FormatBody"];
-	formatBody = existFormatBody ? [existFormatBody copy] : @"\"gTitle_ | _SOURCE_\"<br /><br />gUrl_";
+	formatBody = existFormatBody ? [existFormatBody copy] : @"\"_TITLE_ | _SOURCE_\"<br /><br />_URL_";
 	id existFormatSubject = [dict objectForKey:@"FormatSubject"];
-	formatSubject = existFormatSubject ? [existFormatSubject copy] : @"[RSS] gTitle_ | _SOURCE_";
+	formatSubject = existFormatSubject ? [existFormatSubject copy] : @"[RSS] _TITLE_ | _SOURCE_";
 
 	id existChoice = [dict objectForKey:@"Choice"];
 	choice = existChoice ? [existChoice intValue] : 0;

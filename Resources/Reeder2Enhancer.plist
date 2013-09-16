@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>entry</key>
+	<dict>
+		<key>cell</key>
+		<string>PSLinkCell</string>
+		<key>icon</key>
+		<string>Reeder2Enhancer.png</string>
+		<key>label</key>
+		<string>Reeder2Enhancer</string>
+	</dict>
+	<key>items</key>
+	<array>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>Add share action</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSLinkCell</string>
+			<key>detail</key>
+			<string>P2ELineViewController</string>
+			<key>label</key>
+			<string>LINE action</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSLinkCell</string>
+			<key>detail</key>
+			<string>P2EHatenaBookmarkViewController</string>
+			<key>label</key>
+			<string>HatenaBookmark action</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSLinkCell</string>
+			<key>detail</key>
+			<string>P2ECustomViewController</string>
+			<key>label</key>
+			<string>Custom action</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>Format (Twitter, Facebook, App.net, Buffer, etc.)</string>
+			<key>footerText</key>
+			<string>_TITLE_ : Title,  _SOURCE_ : Source</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSEditTextCell</string>
+			<key>detail</key>
+			<string>PSDetailController</string>
+			<key>defaults</key>
+			<string>com.kindadev.Reeder2Enhancer</string>
+			<key>default</key>
+			<string>&quot;_TITLE_ | _SOURCE_&quot;</string>
+			<key>placeholder</key>
+			<string>&quot;_TITLE_ | _SOURCE_&quot;</string>
+			<key>key</key>
+			<string>Format</string>
+			<key>PostNotification</key>
+			<string>com.kindadev.Reeder2Enhancer.settingschanged</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<true/>
+			<key>defaults</key>
+			<string>com.kindadev.Reeder2Enhancer</string>
+			<key>key</key>
+			<string>CaretMoveToTop</string>
+			<key>label</key>
+			<string>Caret move to top</string>
+			<key>PostNotification</key>
+			<string>com.kindadev.Reeder2Enhancer.settingschanged</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>Format (Mail Link)</string>
+			<key>footerText</key>
+			<string>_TITLE_ : Title,  _SOURCE_ : Source, _URL_ : Link url</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSEditTextCell</string>
+			<key>detail</key>
+			<string>PSDetailController</string>
+			<key>defaults</key>
+			<string>com.kindadev.Reeder2Enhancer</string>
+			<key>default</key>
+			<string>[RSS] _TITLE_ | _SOURCE_</string>
+			<key>placeholder</key>
+			<string>[RSS] _TITLE_ | _SOURCE_</string>
+			<key>key</key>
+			<string>FormatSubject</string>
+			<key>label</key>
+			<string>Subject</string>
+			<key>PostNotification</key>
+			<string>com.kindadev.Reeder2Enhancer.settingschanged</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSEditTextCell</string>
+			<key>detail</key>
+			<string>PSDetailController</string>
+			<key>defaults</key>
+			<string>com.kindadev.Reeder2Enhancer</string>
+			<key>default</key>
+			<string>&quot;_TITLE_ | _SOURCE_&quot;&lt;br /&gt;&lt;br /&gt;_URL_</string>
+			<key>placeholder</key>
+			<string>&quot;_TITLE_ | _SOURCE_&quot;&lt;br /&gt;&lt;br /&gt;_URL_</string>
+			<key>key</key>
+			<string>FormatBody</string>
+			<key>label</key>
+			<string>Body</string>
+			<key>PostNotification</key>
+			<string>com.kindadev.Reeder2Enhancer.settingschanged</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<true/>
+			<key>defaults</key>
+			<string>com.kindadev.Reeder2Enhancer</string>
+			<key>key</key>
+			<string>IsHTML</string>
+			<key>label</key>
+			<string>Use HTML in the Body</string>
+			<key>PostNotification</key>
+			<string>com.kindadev.Reeder2Enhancer.settingschanged</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>Disable &quot;Pull to Refresh&quot;</string>
+			<key>footerText</key>
+			<string>Prevents to be refresh all subscriptions by pulling.</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<false/>
+			<key>defaults</key>
+			<string>com.kindadev.Reeder2Enhancer</string>
+			<key>key</key>
+			<string>NoRefresh</string>
+			<key>label</key>
+			<string>Enabled</string>
+			<key>PostNotification</key>
+			<string>com.kindadev.Reeder2Enhancer.settingschanged</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>Ask to send</string>
+			<key>footerText</key>
+			<string>Display alerts when sending articles by swiping the article list. (Readability, Instapaper, Pocket, QUOTE.fm)</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<true/>
+			<key>defaults</key>
+			<string>com.kindadev.ReederEnhancer</string>
+			<key>key</key>
+			<string>AskToSend</string>
+			<key>label</key>
+			<string>Enabled</string>
+			<key>PostNotification</key>
+			<string>com.kindadev.ReederEnhancer.settingschanged</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>Change the font, font size</string>
+			<key>footerText</key>
+			<string>Change the font size setting screen, the articles list. Please kill the Reeder 2.app to apply.</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSLinkListCell</string>
+			<key>default</key>
+			<string>HelveticaNeue-Medium</string>
+			<key>defaults</key>
+			<string>com.kindadev.Reeder2Enhancer</string>
+			<key>detail</key>
+			<string>PSListItemsController</string>
+			<key>key</key>
+			<string>FontTitle</string>
+			<key>id</key>
+			<string>FontTitle</string>
+			<key>label</key>
+			<string>Title font</string>
+			<key>PostNotification</key>
+			<string>com.kindadev.Reeder2Enhancer.settingschanged</string>
+			<key>validTitles</key>
+			<array>
+				<string>ArialMT</string>
+				<string>Arial BoldMT</string>
+				<string>Georgia</string>
+				<string>Georgia Bold</string>
+				<string>Helvetica</string>
+				<string>Helvetica Bold</string>
+				<string>HelveticaNeue Medium (default)</string>
+				<string>HelveticaNeue Bold</string>
+				<string>TimesNewRomanPSMT</string>
+				<string>TimesNewRomanPS BoldMT</string>
+			</array>
+			<key>validValues</key>
+			<array>
+				<string>ArialMT</string>
+				<string>Arial-BoldMT</string>
+				<string>Georgia</string>
+				<string>Georgia-Bold</string>
+				<string>Helvetica</string>
+				<string>Helvetica-Bold</string>
+				<string>HelveticaNeue-Medium</string>
+				<string>HelveticaNeue-Bold</string>
+				<string>TimesNewRomanPSMT</string>
+				<string>TimesNewRomanPS-BoldMT</string>
+			</array>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSLinkListCell</string>
+			<key>default</key>
+			<string>17.0</string>
+			<key>defaults</key>
+			<string>com.kindadev.Reeder2Enhancer</string>
+			<key>detail</key>
+			<string>PSListItemsController</string>
+			<key>key</key>
+			<string>FontSizeTitle</string>
+			<key>id</key>
+			<string>FontSizeTitle</string>
+			<key>label</key>
+			<string>Title font size</string>
+			<key>PostNotification</key>
+			<string>com.kindadev.Reeder2Enhancer.settingschanged</string>
+			<key>validTitles</key>
+			<array>
+				<string>12</string>
+				<string>13</string>
+				<string>14</string>
+				<string>15</string>
+				<string>16</string>
+				<string>17 (default)</string>
+				<string>18</string>
+			</array>
+			<key>validValues</key>
+			<array>
+				<string>12.0</string>
+				<string>13.0</string>
+				<string>14.0</string>
+				<string>15.0</string>
+				<string>16.0</string>
+				<string>17.0</string>
+				<string>18.0</string>
+			</array>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSLinkListCell</string>
+			<key>default</key>
+			<string>17.0</string>
+			<key>defaults</key>
+			<string>com.kindadev.Reeder2Enhancer</string>
+			<key>detail</key>
+			<string>PSListItemsController</string>
+			<key>key</key>
+			<string>FontSizeSubtitle</string>
+			<key>id</key>
+			<string>FontSizeSubtitle</string>
+			<key>label</key>
+			<string>Subtitle font size</string>
+			<key>PostNotification</key>
+			<string>com.kindadev.Reeder2Enhancer.settingschanged</string>
+			<key>validTitles</key>
+			<array>
+				<string>12</string>
+				<string>13</string>
+				<string>14</string>
+				<string>15</string>
+				<string>16</string>
+				<string>17 (default)</string>
+				<string>18</string>
+			</array>
+			<key>validValues</key>
+			<array>
+				<string>12.0</string>
+				<string>13.0</string>
+				<string>14.0</string>
+				<string>15.0</string>
+				<string>16.0</string>
+				<string>17.0</string>
+				<string>18.0</string>
+			</array>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>Notification</string>
+			<key>footerText</key>
+			<string>PostNotification when finished images cache unless nothing target image. Please set from iOS default &quot;Notifications&quot; section after initial sync after installing tweak.</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>Credit</string>
+			<key>footerText</key>
+			<string>Copyright (c) 2013 kinda All rights reserved.</string>
+		</dict>
+		<dict>
+			<key>alignment</key>
+			<integer>2</integer>
+			<key>cell</key>
+			<string>PSButtonCell</string>
+			<key>label</key>
+			<string>Follow @wa_kinchan</string>
+			<key>action</key>
+			<string>openTwitter:</string>
+			<key>icon</key>
+			<string>FlatTwitter.png</string>
+		</dict>
+	</array>
+	<key>title</key>
+	<string>Reeder2Enhancer</string>
+</dict>
+</plist>

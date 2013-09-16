@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>items</key>
+	<array>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>Add HatenaBookmark action</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<true/>
+			<key>defaults</key>
+			<string>com.kindadev.Reeder2Enhancer</string>
+			<key>key</key>
+			<string>IsHatena</string>
+			<key>label</key>
+			<string>Enabled</string>
+			<key>set</key>
+			<string>setIsHatena:forSpecifier:</string>
+			<key>PostNotification</key>
+			<string>com.kindadev.Reeder2Enhancer.settingschanged</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSLinkListCell</string>
+			<key>default</key>
+			<string>0</string>
+			<key>defaults</key>
+			<string>com.kindadev.Reeder2Enhancer</string>
+			<key>detail</key>
+			<string>PSListItemsController</string>
+			<key>key</key>
+			<string>Choice</string>
+			<key>id</key>
+			<string>Choice</string>
+			<key>label</key>
+			<string>Select client</string>
+			<key>set</key>
+			<string>setChoice:forSpecifier:</string>
+			<key>PostNotification</key>
+			<string>com.kindadev.Reeder2Enhancer.settingschanged</string>
+			<key>validTitles</key>
+			<array>
+				<string>Internal</string>
+				<string>Internal (Obsolete)</string>
+				<string>URL Scheme (Transition to the HatenaBookmark.app)</string>
+			</array>
+			<key>validValues</key>
+			<array>
+				<string>0</string>
+				<string>1</string>
+				<string>2</string>
+			</array>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSEditTextCell</string>
+			<key>detail</key>
+			<string>PSDetailController</string>
+			<key>defaults</key>
+			<string>com.kindadev.Reeder2Enhancer</string>
+			<key>label</key>
+			<string>Username</string>
+			<key>key</key>
+			<string>HatenaUsername</string>
+			<key>id</key>
+			<string>HatenaUsername</string>
+			<key>PostNotification</key>
+			<string>com.kindadev.Reeder2Enhancer.settingschanged</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSecureEditTextCell</string>
+			<key>detail</key>
+			<string>PSDetailController</string>
+			<key>defaults</key>
+			<string>com.kindadev.Reeder2Enhancer</string>
+			<key>label</key>
+			<string>Password</string>
+			<key>key</key>
+			<string>HatenaPassword</string>
+			<key>id</key>
+			<string>HatenaPassword</string>
+			<key>PostNotification</key>
+			<string>com.kindadev.Reeder2Enhancer.settingschanged</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSEditTextCell</string>
+			<key>detail</key>
+			<string>PSDetailController</string>
+			<key>defaults</key>
+			<string>com.kindadev.Reeder2Enhancer</string>
+			<key>label</key>
+			<string>Default Comment</string>
+			<key>default</key>
+			<string>[Reeder]</string>
+			<key>placeholder</key>
+			<string>[Reeder]</string>
+			<key>key</key>
+			<string>DefaultComment</string>
+			<key>id</key>
+			<string>DefaultComment</string>
+			<key>PostNotification</key>
+			<string>com.kindadev.Reeder2Enhancer.settingschanged</string>
+		</dict>
+	</array>
+	<key>title</key>
+	<string>HatenaBookmark</string>
+</dict>
+</plist>

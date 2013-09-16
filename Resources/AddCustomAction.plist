@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>items</key>
+	<array>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>Add Custom action</string>
+			<key>footerText</key>
+			<string>_TITLE_ : Title,  _SOURCE_ : Source, _URL_ : Link url</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<false/>
+			<key>defaults</key>
+			<string>com.kindadev.Reeder2Enhancer</string>
+			<key>key</key>
+			<string>IsCustom</string>
+			<key>label</key>
+			<string>Enabled</string>
+			<key>PostNotification</key>
+			<string>com.kindadev.Reeder2Enhancer.settingschanged</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSEditTextCell</string>
+			<key>detail</key>
+			<string>PSDetailController</string>
+			<key>label</key>
+			<string>Title</string>
+			<key>defaults</key>
+			<string>com.kindadev.Reeder2Enhancer</string>
+			<key>default</key>
+			<string>*CUSTOM ACTION*</string>
+			<key>placeholder</key>
+			<string>Title</string>
+			<key>key</key>
+			<string>TitleCustom</string>
+			<key>PostNotification</key>
+			<string>com.kindadev.Reeder2Enhancer.settingschanged</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSEditTextCell</string>
+			<key>detail</key>
+			<string>PSDetailController</string>
+			<key>defaults</key>
+			<string>com.kindadev.Reeder2Enhancer</string>
+			<key>default</key>
+			<string>tweetbot:///post?text=&quot;_TITLE_ | _SOURCE_&quot; _URL_</string>
+			<key>placeholder</key>
+			<string>URL Scheme</string>
+			<key>key</key>
+			<string>FormatCustom</string>
+			<key>PostNotification</key>
+			<string>com.kindadev.Reeder2Enhancer.settingschanged</string>
+		</dict>
+	</array>
+	<key>title</key>
+	<string>Custom</string>
+</dict>
+</plist>
