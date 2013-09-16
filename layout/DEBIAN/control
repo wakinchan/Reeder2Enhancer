@@ -1,0 +1,10 @@
+Package: com.kindadev.reeder2enhancer
+Name: Reeder2Enhancer
+Depends: mobilesubstrate
+Version: 1.2
+Architecture: iphoneos-arm
+Description: Add the useful feature for Reeder 2. Enhance the Reeder 2.app!
+Depiction: http://kindadev.com/cydia/Reeder2Enhancer.html
+Maintainer: kinda
+Author: kinda
+Section: Tweaks
