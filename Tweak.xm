@@ -46,9 +46,6 @@ static NSString *format;
 {
 	NSString *cStr = [format stringByReplacingOccurrencesOfString:kMacroTitle withString:gTitle];
 	cStr = [cStr stringByReplacingOccurrencesOfString:kMacroSource withString:gSrcTitle];
-	if (cStr.length > 140) {
-		cStr = [cStr substringWithRange:NSMakeRange(0, 140)];
-	}
 
 	UIWindow *window = [[UIApplication sharedApplication] keyWindow];
 	id viewController = window.rootViewController;
@@ -161,36 +158,21 @@ static BOOL isRefresh;
 %hook SubscriptionsViewController
 - (BOOL)scrollHeaderViewCanPull:(id)arg1
 {
-	if ( isRefresh ) {
-		return NO;
-	}
-	else {
-		return %orig;
-	}
+	return isRefresh ? NO : %orig;
 }
 %end
 
 %hook TableViewController
 - (BOOL)scrollHeaderViewCanPull:(id)arg1
 {
-	if ( isRefresh ) {
-		return NO;
-	}
-	else {
-		return %orig;
-	}
+	return isRefresh ? NO : %orig;
 }
 %end
 
 %hook ItemsViewController
 - (BOOL)scrollHeaderViewCanPull:(id)arg1
 {
-	if ( isRefresh ) {
-		return NO;
-	}
-	else {
-		return %orig;
-	}
+	return isRefresh ? NO : %orig;
 }
 %end
 
@@ -207,17 +189,11 @@ static float fontSizeSubtitle;
 /* + (id)boldSystemFontOfSize:(float)size */
 + (id)systemFontOfSize:(float)size
 {
-	if (size == 17.0) {
-		return %orig(fontSizeSubtitle);
-	}
-	return %orig;
+	return (size == 17.0) ? %orig(fontSizeSubtitle) : %orig;
 }
 + (id)fontWithName:(NSString *)name size:(float)size
 {
-	if ( [name isEqualToString:@"HelveticaNeue-Medium"] && size == 17.0 ) {
-		return %orig(fontTitle, fontSizeTitle);
-	}
-	return %orig;
+	return ( [name isEqualToString:@"HelveticaNeue-Medium"] && size == 17.0 ) ? %orig(fontTitle, fontSizeTitle) : %orig;
 }
 %end
 
@@ -232,7 +208,9 @@ static BOOL isAskToSend;
 %hook ItemsViewController
 - (BOOL)collectionView:(id)arg1 commitSlider:(int)slider forCell:(id)arg3
 {
-	if (!isAskToSend) return %orig;
+	if (!isAskToSend) {
+		return %orig;
+	}
 
 	NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
 	NSString *action;
@@ -287,23 +265,13 @@ static BOOL isLine;
 static NSString *formatLine;
 
 + (BOOL)canHandleObject:(id)object
-{	
-	if ( ![object isLinkOnly] ) {
-		return YES;
-	}
-	else {
-		return NO;
-	}
+{
+	return ![object isLinkOnly];
 }
 
 + (BOOL)canShare
 {
-	if (isLine) {
-		return YES;
-	}
-	else {
-		return NO;
-	}
+	return isLine;
 }
 
 - (void)share:(id)item
@@ -381,29 +349,21 @@ static NSString *hatenaPassword;
 static NSString *hatenaComment;
 
 + (BOOL)canHandleObject:(id)object
-{	
-	if ( ![object isLinkOnly] ) {
-		return YES;
-	}
-	else {
-		return NO;
-	}
+{
+	return ![object isLinkOnly];
 }
 
 + (BOOL)canShare
 {
-	if (isHatena) {
-		return YES;
-	}
-	else {
-		return NO;
-	}
+	return isHatena;
 }
 
 - (void)share:(id)item
 {
 	if ( choice == 0 ) {
     	
+		// Internal
+
     	[self initializeHatenaBookmarkClient];
 
     	if ( ![HTBHatenaBookmarkManager sharedManager].authorized ) {
@@ -433,6 +393,8 @@ static NSString *hatenaComment;
 	}
 	else if ( choice == 1 ) {
 
+		// Internal (Obsolete)
+		
 		if ( [hatenaUsername isEqualToString:@""] || [hatenaPassword isEqualToString:@""] ) {
 			return [%c(RSAlert) presentWithTitle:@"Error!" message:@"Please Login HatenaBookmark! You can configure options from Setting.app." buttonTitle:@"OK" handler:nil];
 		}
@@ -456,7 +418,19 @@ static NSString *hatenaComment;
 		} inView:[[UIView alloc] initWithFrame:CGRectMake(0, [[UIScreen mainScreen] bounds].size.height-20, 320, 460)]];
 	}
 	else if ( choice == 2 ) {
-		[self postHatenaFromUrlScheme];
+
+		// URL scheme (Open in hatenabookmark.app)
+		
+		if ( [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"hatenabookmark://"]] ) {
+			NSString *url = [NSString stringWithFormat:@"hatenabookmark:/entry?title=%@&url=%@&backtitle=%@&backurl=%@", gTitle, gUrl, @"Reeder", @"reeder://"];
+
+			[[UIApplication sharedApplication] openURL:[NSURL URLWithString:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
+		}
+		else {
+			[%c(RSAlert) presentWithTitle:@"Error!" message:@"Please install HatenaBookmark.app!" buttonTitle:@"OK" handler:^{
+				[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://itunes.apple.com/jp/app/hatenabukkumaku/id354976659?mt=8"]];
+			}];
+		}
 	}
 }
 
@@ -500,22 +474,6 @@ static NSString *hatenaComment;
 	[hatenaClient post:gUrl comment:comment];
 }
 
-%new(v@:)
-- (void)postHatenaFromUrlScheme
-{
-	if ( [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"hatenabookmark://"]] ) {
-		NSString *url = [NSString stringWithFormat:@"hatenabookmark:/entry?title=%@&url=%@&backtitle=%@&backurl=%@", gTitle, gUrl, @"Reeder", @"reeder://"];
-		NSURL *webStringURL = [NSURL URLWithString:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-
-		[[UIApplication sharedApplication] openURL:webStringURL];
-	}
-	else {
-		[%c(RSAlert) presentWithTitle:@"Error!" message:@"Please install HatenaBookmark.app!" buttonTitle:@"OK" handler:^{}];
-	}
-}
-%end
-
-
 
 
 #pragma mark Custom action
@@ -527,23 +485,13 @@ static NSString *formatCustom;
 static NSString *titleCustom;
 
 + (BOOL)canHandleObject:(id)object
-{	
-	if ( ![object isLinkOnly] ) {
-		return YES;
-	}
-	else {
-		return NO;
-	}
+{
+	return ![object isLinkOnly];
 }
 
 + (BOOL)canShare
 {
-	if (isCustom) {
-		return YES;
-	}
-	else {
-		return NO;
-	}
+	return isCustom;
 }
 
 - (void)share:(id)item
@@ -555,7 +503,6 @@ static NSString *titleCustom;
 	cStr = [cStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 
 	NSString *openURL = [NSString stringWithFormat:@"%@://", [[NSURL URLWithString:cStr] scheme]];
-	// NSLog(@"openURL: %@", openURL);
 
 	if ( [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:openURL]] ) {
 		NSURL *webStringURL = [NSURL URLWithString:cStr];
@@ -573,10 +520,11 @@ static NSString *titleCustom;
 %hook RKService
 + (void)createInStore:(id)store oid:(id)oid title:(id)title link:(id)link index:(int)index
 {
-	%log;
 	if ( [title isEqualToString:@"Message"] ) {
 		%orig;
+
 		// index safari: 20, chrome: 21
+		
 		%orig(store, @"RKServiceLine", @"LINE", link, 22);
 		%orig(store, @"RKServiceHatena", @"HatenaBookmark", link, 23);
 		%orig(store, @"RKServiceCustom", titleCustom, link, 24);
